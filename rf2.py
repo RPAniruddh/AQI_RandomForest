@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the data
-data = pd.read_csv('/content/vyttiladate_Winsorization.csv')
+data = pd.read_csv('/content/vyttilapreprocessed.csv')
 
 # Drop the rows with missing values
 data = data.dropna()
@@ -59,39 +59,6 @@ future_predictions_actual = scaler_y.inverse_transform(future_predictions.reshap
 print('\nPredicted AQI for the next three days:')
 for i, pred in enumerate(future_predictions_actual):
     print(f'Day {i+1}: {pred:.2f}')
-
-
-
-# Create a figure and axis objects
-fig, ax = plt.subplots(figsize=(12, 6))
-
-# Plot the actual values
-ax.plot(y_test_actual, label='Actual', marker='o')
-
-# Plot the predicted values
-ax.plot(y_pred_actual, label='Predicted', marker='s')
-
-# Set the x-axis tick labels
-ax.set_xticks(range(len(y_test_actual)))
-ax.set_xticklabels([f'Day {i+1}' for i in range(len(y_test_actual))], rotation=45)
-
-# Set the y-axis label
-ax.set_ylabel('AQI')
-
-# Set the title
-ax.set_title('Actual vs. Predicted AQI')
-
-# Add a legend
-ax.legend()
-
-# Adjust the spacing between subplots
-plt.subplots_adjust(bottom=0.2)
-
-# Display the plot
-plt.show()
-
-# Assuming this is your predicted and actual values from a Random Forest or similar model
-# If you've just run the model, ensure y_pred and y_test are still defined
 
 # Simulate inverse transformation for demonstration; replace with your actual values
 aqi_mean = data['AQI'].mean()  # Use the mean of your actual AQI values
